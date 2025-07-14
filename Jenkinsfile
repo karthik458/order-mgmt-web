@@ -1,9 +1,5 @@
 pipeline {
   agent any
-  options {
-        durabilityHint('PERFORMANCE_OPTIMIZED')  // Helps prevent timeout on slow machines
-        timeout(time: 20, unit: 'MINUTES')       // Fails fast if stuck beyond 20 mins
-    }
   stages {
     stage('Build and package') {
       steps {
@@ -25,5 +21,9 @@ pipeline {
       }
     }
 
+  }
+  options {
+    durabilityHint('PERFORMANCE_OPTIMIZED')
+    timeout(time: 20, unit: 'MINUTES')
   }
 }
