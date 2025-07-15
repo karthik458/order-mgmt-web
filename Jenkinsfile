@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Checkout') {
+    steps {
+        git branch: 'master', url: 'https://github.com/karthik458/order-mgmt-web.git'
+    }
+}
     stage('Build and package') {
       steps {
         sh '''mvn -B clean package -DskipTests
