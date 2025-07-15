@@ -8,16 +8,14 @@ pipeline {
 }
     stage('Build and package') {
       steps {
-        sh '''mvn -B clean package -DskipTests
-'''
+        sh 'mvn -B clean package -DskipTests'
       }
     }
 
     stage('Docker Image Build') {
       steps {
       script {
-                    docker.build('order-mgmt-app:1.0', '.')
-'''
+               docker.build('order-mgmt-app:1.0', '.')
       }
     }
 
@@ -33,3 +31,4 @@ pipeline {
     timeout(time: 20, unit: 'MINUTES')
   }
 }
+
