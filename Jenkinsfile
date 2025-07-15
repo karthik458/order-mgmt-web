@@ -10,7 +10,8 @@ pipeline {
 
     stage('Docker Image Build') {
       steps {
-        sh '''docker build -t order-mgmt-app:1.0 .
+      script {
+                    docker.build('order-mgmt-app:1.0', '.')
 '''
       }
     }
