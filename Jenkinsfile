@@ -19,6 +19,7 @@ pipeline {
       }
     }
 
+}
     stage('Deploy') {
       steps {
         sh 'docker run -d -p 8081:8080 order-mgmt-app:1.0'
