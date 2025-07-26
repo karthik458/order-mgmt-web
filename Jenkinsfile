@@ -36,7 +36,18 @@ pipeline {
                 '''
             }
         }
+ 	stage('Deploy') {
+	    steps {
+        	script {
+            // Stop old container if exists
+            sh 'docker stop order-mgmt-app || true'
+            sh 'docker rm order-mgmt-app || true'
 
+            // Run new container
+            sh 'docker run -d -p 8081:8080 --name order-mgmt-app order-mgmt-app:1.0'
+        	}
+   	 }	
+	}
         stage('Run Prometheus') {
             steps {
                 sh '''
