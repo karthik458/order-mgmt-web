@@ -48,17 +48,19 @@ pipeline {
         	}
    	 }	
 	}
-        stage('Run Prometheus') {
-            steps {
-                sh '''
+
+	stage('Run Prometheus') {
+    		steps {
+    		    script {
+            def workspaceDir = pwd()
+            	sh """
                 docker run -d \
                   --name prometheus \
                   -p 9090:9090 \
-                  -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml \
+                  -v ${workspaceDir}/prometheus.yml:/etc/prometheus/prometheus.yml \
                   prom/prometheus
-                '''
-            }
+            """
         }
     }
 }
-
+}
