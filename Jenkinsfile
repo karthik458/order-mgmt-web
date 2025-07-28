@@ -54,6 +54,7 @@ pipeline {
     		    script {
             def workspaceDir = pwd()
             	sh """
+		docker rm -f prometheus || true
                 docker run -d \
                   --name prometheus \
                   -p 9090:9090 \
