@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: order-mgmt-app
+  namespace: telecom
   labels:
     app: order-mgmt
 spec:
@@ -16,6 +17,6 @@ spec:
     spec:
       containers:
         - name: order-mgmt-container
-          image: order-mgmt-app:1.0
+          image: karthik458/order-mgmt-app:1.0
           ports:
             - containerPort: 8080

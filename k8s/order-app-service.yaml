@@ -1,0 +1,15 @@
+# order-app-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-mgmt-service
+  namespace: telecom
+spec:
+  type: NodePort
+  selector:
+    app: order-mgmt
+  ports:
+    - protocol: TCP
+      port: 8080        # Container port
+      targetPort: 8080  # Pod port
+      nodePort: 30081   # External EC2 port (choose in range 30000-32767)
